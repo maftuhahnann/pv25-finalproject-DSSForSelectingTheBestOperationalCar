@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DecisionSupportSystem</class>
+ <widget class="QMainWindow" name="DecisionSupportSystem">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1000</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SPK Pemilihan Mobil Operasional Terbaik - Metode SAW</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background-color: #f9f9f9;
+}
+QGroupBox {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 10px;
+}
+QLabel {
+    font-size: 12px;
+    color: #333;
+}
+QLineEdit {
+    font-size: 12px;
+    padding: 3px 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+QPushButton#AddButton {
+    background-color: #2ecc71;
+    color: white;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+QPushButton#AddButton:hover {
+    background-color: #27ae60;
+}
+QPushButton#DeleteButton {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+QPushButton#DeleteButton:hover {
+    background-color: #c0392b;
+}
+QPushButton#CalculateButton {
+    background-color: #f1c40f;
+    color: white;
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 4px;
+}
+QPushButton#CalculateButton:hover {
+    background-color: #d4ac0d;
+}
+QTableWidget {
+    font-size: 12px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+}
+QTableWidget#DataMobilTable {
+    width: 100%;
+}
+QTableWidget#HasilSAWTable {
+    width: 100%;
+}
+QHeaderView::section {
+    background-color: #e0e0e0;
+    padding: 4px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="mainLayout" stretch="2,5">
+    <item>
+     <widget class="QGroupBox" name="inputGroup">
+      <property name="title">
+       <string>Input Data Mobil</string>
+      </property>
+      <layout class="QGridLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="labelNamaMobil">
+         <property name="text">
+          <string>Nama Mobil:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="nameInput"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="labelKapasitas">
+         <property name="text">
+          <string>Kapasitas:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="capacityInput"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="labelPenampilan">
+         <property name="text">
+          <string>Penampilan:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="appearanceInput"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="labelMerk">
+         <property name="text">
+          <string>Merk:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="brandInput"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="labelBahanBakar">
+         <property name="text">
+          <string>Bahan Bakar:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="fuelInput"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="labelTipe">
+         <property name="text">
+          <string>Tipe:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="typeInput"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="labelHarga">
+         <property name="text">
+          <string>Harga (Rp):</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="priceInput"/>
+       </item>
+       <item row="7" column="1">
+        <layout class="QHBoxLayout" name="buttonLayout">
+         <item>
+          <widget class="QPushButton" name="addButton">
+           <property name="text">
+            <string>Tambah ke Tabel</string>
+           </property>
+           <property name="objectName">
+            <string>AddButton</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="rightLayout">
+      <item>
+       <widget class="QLabel" name="labelDataMobil">
+        <property name="text">
+         <string>Data Mobil</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="table">
+        <property name="editTriggers">
+         <set>QAbstractItemView::DoubleClicked</set>
+        </property>
+        <property name="objectName">
+         <string>DataMobilTable</string>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <row/>
+        <column>
+         <property name="text">
+          <string>Nama Mobil</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Kapasitas</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Penampilan</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Merk</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Bahan Bakar</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Tipe</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Harga</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="calculateButton">
+        <property name="text">
+         <string>Hitung SAW</string>
+        </property>
+        <property name="objectName">
+         <string>CalculateButton</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelHasilSAW">
+        <property name="text">
+         <string>Hasil Perhitungan SAW</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTableWidget" name="resultTable">
+        <property name="objectName">
+         <string>HasilSAWTable</string>
+        </property>
+        <attribute name="horizontalHeaderStretchLastSection">
+         <bool>true</bool>
+        </attribute>
+        <row/>
+        <column>
+         <property name="text">
+          <string>Rank</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Nama Mobil</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Hasil SAW</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="deleteButton">
+        <property name="text">
+         <string>Hapus Data</string>
+        </property>
+        <property name="objectName">
+         <string>DeleteButton</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1000</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="fileMenu">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionExportPDF"/>
+    <addaction name="actionExportCSV"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="helpMenu">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="helpMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="statusTip">
+    <string>Nama: Maftuh Ahnan Al-Kautsar | NIM: F1D022135</string>
+   </property>
+  </widget>
+  <action name="actionExportPDF">
+   <property name="text">
+    <string>Export Hasil SAW ke PDF</string>
+   </property>
+  </action>
+  <action name="actionExportCSV">
+   <property name="text">
+    <string>Export Data Mobil ke CSV</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
